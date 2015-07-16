@@ -45,4 +45,6 @@ class Faraday::ForTest::Response
       end + "\n"
     end
   end
+  
+  include Formatter
 end
