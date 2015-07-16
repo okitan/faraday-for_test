@@ -31,7 +31,7 @@ class Faraday::ForTest::Response
     def must_succeed
       begin
         super
-      rescue Faraday::ForTest::Reponse::Assertion::AssertionError => e
+      rescue Faraday::ForTest::Response::Assertion::AssertionError => e
         dump_once
         raise e
       end
