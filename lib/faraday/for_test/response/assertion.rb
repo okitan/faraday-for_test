@@ -11,8 +11,8 @@ class Faraday::ForTest::Response
     end
 
     def must_succeed
-      if response.success?
-        raise AssertionError.new(response)
+      if success?
+        raise AssertionError.new(self)
       else
         self
       end
