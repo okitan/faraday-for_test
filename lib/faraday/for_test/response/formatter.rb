@@ -36,7 +36,7 @@ class Faraday::ForTest::Response
     def response_body(prettyr = false)
       if body && !body.empty?
         if formatter = Faraday::ForTest.configuration.body_formatters.find {|k, v| headers["content-type"] =~ /#{k}/ }
-          formatter.call(request_params)
+          formatter.last.call(request_params)
         else
           request_params
         end
