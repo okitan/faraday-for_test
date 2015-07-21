@@ -11,7 +11,7 @@ module Faraday
 
       def body_formatters
         @body_formatters ||= {
-          "application/x-www-form-url-encoded" => Rack::Utils.method(:build_query)
+          "application/x-www-form-urlencoded" => Rack::Utils.method(:build_query)
         }
       end
 
