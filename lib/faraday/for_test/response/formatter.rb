@@ -17,7 +17,7 @@ class Faraday::ForTest::Response
         if formatter = Faraday::ForTest.configuration.body_formatters.find {|k, v| env[:request_headers]["Content-Type"] =~ /#{k}/ }
           formatter.last.call(request_params)
         else
-          request_params
+          request_params.inspect
         end
       else
         ""
@@ -38,7 +38,7 @@ class Faraday::ForTest::Response
         if formatter = Faraday::ForTest.configuration.body_formatters.find {|k, v| headers["content-type"] =~ /#{k}/ }
           formatter.last.call(body)
         else
-          body
+          body.inspect
         end
       else
         ""
