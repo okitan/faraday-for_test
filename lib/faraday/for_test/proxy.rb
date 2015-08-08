@@ -18,7 +18,7 @@ module Faraday
             maybe_response
           end
         else
-          raise ::NoMethodError.new("#{name} seems not defined or publid", name)
+          super
         end
       end
     end
