@@ -33,7 +33,7 @@ class Faraday::ForTest::Response
       headers.map {|k, v| "#{k}: #{v}" }.join("\n")
     end
 
-    def response_body(prettyr = false)
+    def response_body(pretty = false)
       if body && !body.empty?
         if formatter = Faraday::ForTest.configuration.body_formatters.find {|k, v| headers["content-type"] =~ /#{k}/ }
           formatter.last.call(body)
