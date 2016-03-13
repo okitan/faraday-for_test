@@ -1,5 +1,3 @@
-require "faraday/for_test/response"
-
 require "rack/utils"
 
 module Faraday::ForTest
