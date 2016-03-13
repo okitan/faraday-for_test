@@ -1,5 +1,6 @@
 module Faraday::ForTest
   class Configuration
+    attr_accessor :dump_always
     attr_accessor :dump_if_assert_failed
   end
 
@@ -27,6 +28,12 @@ module Faraday::ForTest
         @dumped = true
 
         self
+      end
+
+      # override
+      def initialize(response)
+        super
+        dump_once if Faraday::ForTest.configuration.dump_always
       end
 
       # override assertion
