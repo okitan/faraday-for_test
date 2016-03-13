@@ -34,7 +34,7 @@ module Faraday::ForTest
         begin
           super
         rescue Faraday::ForTest::Response::Assertion::AssertionError => e
-          dump_once #if Faraday::ForTest.configuration.dump_if_assert_failed
+          dump_once if Faraday::ForTest.configuration.dump_if_assert_failed
           raise e
         end
       end
