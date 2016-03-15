@@ -1,25 +1,27 @@
-module Faraday
-  module ForTest
-    class Proxy < BasicObject
-      def initialize(client)
-        @client = client
-      end
+module Faraday::ForTest
+  class Proxy < BasicObject
+    attr_reader :connection
 
-      # proxy every method
-      def method_missing(name, *args, &block)
-        if @client.respond_to?(name)
-          maybe_response = @client.__send__(name, *args, &block)
+    def initialize(connection)
+      @connection = connection
+    end
 
-          if maybe_response.is_a?(::Faraday::Response)
-            response = ::Faraday::ForTest::Response.new(maybe_response)
-            response.request_params = args.find {|e| e.is_a?(::Array) || e.is_a?(::Hash) || e.is_a?(::NilClass) }
-            response
-          else
-            maybe_response
-          end
+    # proxy every method
+    def method_missing(name, *args, &block)
+      if @connection.respond_to?(name)
+        maybe_response = @connection.__send__(name, *args, &block)
+
+        if maybe_response.is_a?(::Faraday::Response)
+          response = ::Faraday::ForTest::Response.new(maybe_response)
+
+          # TODO: configurable to find out request_params from args
+          response.request_params = args.find {|e| e.is_a?(::Array) || e.is_a?(::Hash) || e.is_a?(::NilClass) }
+          response
         else
-          super
+          maybe_response
         end
+      else
+        super
       end
     end
   end

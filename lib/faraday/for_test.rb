@@ -1,4 +1,5 @@
 require "faraday"
+
 module Faraday
   module ForTest
     require "faraday/for_test/configuration"

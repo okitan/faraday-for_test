@@ -1,23 +1,12 @@
 require "faraday/for_test"
 
-require "rack/utils"
-
 require "singleton"
 
+# actuall configuration is defined in each class
 module Faraday
   module ForTest
     class Configuration
       include Singleton
-
-      def body_formatters
-        @body_formatters ||= {
-          "application/x-www-form-urlencoded" => Rack::Utils.method(:build_query)
-        }
-      end
-
-      def add_body_formatter(key, proc = nil, &block)
-        body_formatters[key] = block_given? ? block : proc
-      end
     end
   end
 end
