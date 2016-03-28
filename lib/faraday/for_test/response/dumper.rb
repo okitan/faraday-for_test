@@ -31,8 +31,8 @@ module Faraday::ForTest
       end
 
       # override
-      def initialize(response)
-        super
+      def initialize(response, params = {})
+        super(response, params)
         dump_once if Faraday::ForTest.configuration.dump_always
       end
 

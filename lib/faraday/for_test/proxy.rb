@@ -12,11 +12,10 @@ module Faraday::ForTest
         maybe_response = @connection.__send__(name, *args, &block)
 
         if maybe_response.is_a?(::Faraday::Response)
-          response = ::Faraday::ForTest::Response.new(maybe_response)
+          request_params = args.find {|e| e.is_a?(::Array) || e.is_a?(::Hash) || e.is_a?(::NilClass) }
 
           # TODO: configurable to find out request_params from args
-          response.request_params = args.find {|e| e.is_a?(::Array) || e.is_a?(::Hash) || e.is_a?(::NilClass) }
-          response
+          ::Faraday::ForTest::Response.new(maybe_response, request_params: request_params)
         else
           maybe_response
         end

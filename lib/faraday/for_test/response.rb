@@ -10,9 +10,13 @@ module Faraday::ForTest
 
     attr_accessor :request_params
 
-    def initialize(response)
+    def initialize(response, params = {})
       @respone = response
-      super
+
+      @request_params  = params.delete(:request_params)
+      @params  = params
+
+      super(response)
     end
   end
 end
