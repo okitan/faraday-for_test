@@ -26,7 +26,7 @@ module Faraday::ForTest
 
       # TODO: configuraable
       def request_body(pretty = false)
-        if request_params && !request_params.empty?
+        if request_params && !request_params.empty? && !%i[ get delete ].include?(env[:method])
           if formatter = Faraday::ForTest.configuration.body_formatters.find {|k, v| env[:request_headers]["Content-Type"] =~ /#{k}/ }
             formatter.last.call(request_params)
           else
