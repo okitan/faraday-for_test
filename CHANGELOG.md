@@ -1,3 +1,9 @@
+## [0.1.2] - 2017-09-11
+
+### Changed
+
+* No params dump as JSON in case GET and DELETE
+
 ## [0.1.1] - 2016-03-28
 
 ### Changed
